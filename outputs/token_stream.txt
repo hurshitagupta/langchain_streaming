@@ -1,0 +1,8 @@
+Streaming response for: LangChain streaming
+
+LangChain streaming lets a language‑model send its answer piece‑by‑piece instead of waiting until the whole response is finished. Think of it like watching a video load frame by frame: you see the first words right away, then more appear as the model keeps generating. This makes
+Step limit reached. Streaming stopped.
+
+
+Stream completed in 24.17 seconds.
+Chunks received: 101
