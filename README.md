@@ -414,3 +414,28 @@ Task 5 demonstrates client disconnect detection, cancellation of an active model
 
 This prevents the server from continuing unnecessary model generation after the client is no longer connected.
 
+---
+
+## Environment Configuration
+
+The project uses environment variables to keep API credentials and model configuration outside the source code.
+
+An `.env.example` file is included to show the required environment variables without exposing any actual secrets:
+
+Create a local `.env` file using the same variables and provide your own values.
+
+The actual `.env` file is excluded from GitHub using `.gitignore` to ensure that API keys are not committed to the repository.
+
+## Requirements
+
+The `requirements.txt` file contains the Python dependencies required to run the assessment.
+
+Install the dependencies using:
+
+```bash
+uv pip install -r requirements.txt
+```
+
+The main dependencies used in this assessment include LangChain, OpenRouter integration, FastAPI, Uvicorn, python-dotenv, HTTPX, and pytest.
+
+After installing the dependencies and configuring the `.env` file, the individual assessment tasks can be executed using the commands provided in their respective sections above.
