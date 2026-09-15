@@ -1,0 +1,17 @@
+TTFT Report for: LangChain streaming
+Runs: 10
+
+Run 01 | TTFT: 4.14s | Total: 5.86s
+Run 02 | TTFT: 1.89s | Total: 3.21s
+Run 03 | TTFT: 2.52s | Total: 4.53s
+Run 04 | TTFT: 5.25s | Total: 6.02s
+Run 05 | TTFT: 5.42s | Total: 6.18s
+Run 06 | TTFT: 1.11s | Total: 1.45s
+Run 07 | TTFT: 6.18s | Total: 7.26s
+Run 08 | TTFT: 6.32s | Total: 7.66s
+Run 09 | TTFT: 2.02s | Total: 2.74s
+Run 10 | TTFT: 1.96s | Total: 3.14s
+
+--- Summary ---
+Average TTFT: 3.68s
+Average Total Time: 4.80s

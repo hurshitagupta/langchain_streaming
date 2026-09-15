@@ -246,5 +246,86 @@ test_sse_failure PASSED
 
 Task 3 demonstrates a working FastAPI SSE endpoint, asynchronous LangChain streaming, correct SSE headers, progressive HTTP delivery, error events, a final termination event, guardrails, and automated success/failure tests.
 
+---
+
+## Task 4 — TTFT Report
+
+### Overview
+
+Task 4 measures the performance of streaming by calculating **Time to First Token (TTFT)** and **total generation time** across 10 model runs.
+
+TTFT measures how long the user waits before seeing the first visible part of the model response, while total time measures how long the complete response takes to generate.
+
+### Implementation
+
+The response is streamed asynchronously using:
+
+```python
+async for chunk in chain.astream({"topic": topic}):
+```
+
+A timer is started immediately before generation begins:
+
+```python
+start_time = time.perf_counter()
+```
+
+When the first non-empty chunk arrives, its arrival time is recorded:
+
+```python
+if first_token_time is None:
+    first_token_time = (
+        time.perf_counter() - start_time
+    )
+```
+
+After the complete stream finishes, the total generation time is calculated.
+
+Empty chunks are ignored so that TTFT represents the arrival of the **first visible model output**, rather than an empty provider event.
+
+### 10-Run Report
+
+The measurement is performed over 10 actual model runs:
+
+```python
+NUMBER_OF_RUNS = 10
+```
+
+### Guardrails
+
+The task includes:
+
+* Input validation for empty topics
+* Input length/token-budget protection
+* Model timeout configuration
+* Retry configuration with capped attempts
+* Output validation before accepting model chunks
+* Maximum meaningful chunk limit
+* Empty-response quarantine
+* Secret hygiene using environment variables
+
+Only non-empty model chunks are counted and used for TTFT measurement.
+
+### Run Task 4
+
+Run the TTFT report using:
+
+```bash
+uv run python -m ttft_report.ttft_report
+```
+
+### Tests
+
+Run the tests using:
+
+```bash
+uv run pytest tests/test_ttft_report.py -v
+```
+
+### Task 4 Deliverables Completed
+
+Task 4 demonstrates TTFT measurement, total generation-time measurement, 10-run performance reporting, average latency calculation, streaming output validation, guardrails, and automated success/failure tests.
+
+The key measurement is **TTFT**, because it represents how quickly the user starts receiving visible output even when the complete model response takes longer to finish.
 
 
