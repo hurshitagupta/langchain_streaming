@@ -1,0 +1,10 @@
+Event stream for: LangChain streaming
+
+[Retriever started]
+[Retriever finished]
+[Model started]
+LangChain streaming lets the model send its answer piece by piece instead of waiting for the whole response. As each chunk is created, it’s immediately passed to your app, so you see text appear in real‑time. The “time to first token” is simply how fast the very first piece arrives, giving a snappy feel. This makes conversations feel more natural and responsive.
+[Model finished]
+
+Events processed: 1628
+Execution steps: 3
