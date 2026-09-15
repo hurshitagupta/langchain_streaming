@@ -328,4 +328,89 @@ Task 4 demonstrates TTFT measurement, total generation-time measurement, 10-run 
 
 The key measurement is **TTFT**, because it represents how quickly the user starts receiving visible output even when the complete model response takes longer to finish.
 
+---
+
+## Task 5 — Disconnect Handling
+
+### Overview
+
+Task 5 adds client disconnect handling to the streaming endpoint.
+
+While the model is generating and streaming a response, the server checks whether the client is still connected. If the client disconnects, the generation is stopped so that the model does not continue producing output unnecessarily.
+
+This extends the SSE implementation from Task 3 by adding cancellation handling.
+
+### Implementation
+
+
+The client connection is checked during streaming using:
+
+```python
+if await request.is_disconnected():
+```
+
+If a disconnect is detected, the application logs:
+
+```text
+Client disconnected. Cancelling generation.
+```
+
+The model stream is then closed using:
+
+```python
+if hasattr(stream, "aclose"):
+    await stream.aclose()
+```
+
+and the generator returns so that no additional output is produced.
+
+The implementation also handles `asyncio.CancelledError`, which may occur when the server cancels the streaming task after the client connection is closed.
+
+### Guardrails
+
+The task includes:
+
+* Input validation for empty topics
+* Input length/token-budget protection
+* Model timeout configuration
+* Retry configuration with capped attempts
+* Output validation before sending model chunks
+* Maximum meaningful chunk limit
+* Client disconnect detection
+* Async cancellation handling
+* Model stream cleanup using `aclose()`
+* Secret hygiene using environment variables
+
+### Run Task 5
+
+Start the disconnect-handling FastAPI server:
+
+```bash
+uv run uvicorn disconnect_handling.disconnect_handling:app --reload
+```
+
+In another terminal, connect to the endpoint:
+
+```bash
+curl.exe -N "http://127.0.0.1:8000/stream?topic=Explain%20LangChain%20streaming%20in%20detail"
+```
+
+The client can be disconnected while generation is running by pressing `Ctrl+C`.
+
+The disconnect-handling logic then stops the generation instead of allowing unnecessary streaming work to continue.
+
+### Tests
+
+Run the tests using:
+
+```bash
+uv run pytest tests/test_disconnect_handling.py -v
+
+```
+
+## Task 5 Deliverables Completed
+
+Task 5 demonstrates client disconnect detection, cancellation of an active model stream, cleanup of the asynchronous stream, cancellation logging, SSE streaming, guardrails, and automated success/failure testing.
+
+This prevents the server from continuing unnecessary model generation after the client is no longer connected.
 

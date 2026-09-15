@@ -1,0 +1,39 @@
+data: {"delta": "**"}
+
+data: {"delta": "Lang"}
+
+data: {"delta": "Chain"}
+
+data: {"delta": " streaming"}
+
+data: {"delta": "\u202f"}
+
+data: {"delta": "\u2014"}
+
+data: {"delta": "\u202f"}
+
+data: {"delta": "a"}
+
+data: {"delta": " simple"}
+
+data: {"delta": ","}
+
+data: {"delta": " step"}
+
+data: {"delta": "\u2011"}
+
+^C
+
+(I have manually disconnected the server using Ctrl+C)
+
+(langchain_streaming) C:\Users\Hurshita Gupta\OneDrive\Desktop\langchain_streaming>uv run uvicorn disconnected_handling.disconnected_handling:app --reload
+INFO:     Will watch for changes in these directories: ['C:\\Users\\Hurshita Gupta\\OneDrive\\Desktop\\langchain_streaming']
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [364] using StatReload
+INFO:     Started server process [19792]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:49847 - "GET /stream?topic=Explain%20LangChain%20streaming%20in%20detail HTTP/1.1" 200 OK
+Client disconnected. Cancelling generation.
+Generation finished.
+
