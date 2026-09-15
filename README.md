@@ -139,3 +139,112 @@ uv run pytest tests/test_event_stream.py -v
 * Success and failure cases covered by automated tests.
 * Runnable using a single documented command.
 
+---
+
+## Task 3 — SSE Endpoint
+
+### Overview
+
+Task 3 implements a Server-Sent Events (SSE) endpoint using FastAPI.
+
+The LangChain response is generated asynchronously using `astream()` and each model chunk is sent to the client over HTTP as soon as it becomes available.
+
+This extends the streaming implementation from Task 1 by exposing the streamed output through an actual HTTP endpoint.
+
+### Implementation
+
+The streaming flow is:
+
+```text
+Prompt → Chat Model → StrOutputParser → FastAPI → SSE Client
+```
+
+The endpoint is available at:
+
+```text
+GET /stream
+```
+
+The model response is streamed using:
+
+```python
+async for chunk in chain.astream({"topic": topic}):
+```
+
+### SSE Configuration
+
+The endpoint uses FastAPI's `StreamingResponse` with:
+
+```text
+Content-Type: text/event-stream
+Cache-Control: no-cache
+X-Accel-Buffering: no
+```
+
+These headers allow the response to be streamed progressively instead of being buffered before reaching the client.
+
+### Error Handling
+
+If an error occurs after streaming has started, the error is returned inside the SSE stream:
+
+```text
+event: error
+data: {"error": "ErrorType"}
+```
+
+A final `done` event is emitted when the stream ends.
+
+This is important because once an HTTP streaming response has started, the application cannot rely on changing the HTTP status code to report a later streaming error.
+
+### Guardrails
+
+The task includes:
+
+* Input validation for empty topics
+* Input length/token-budget protection
+* Model timeout configuration
+* Retry configuration with capped attempts
+* Output validation before chunks are returned
+* Maximum meaningful chunk limit
+* Secret hygiene using environment variables
+* SSE error handling and final termination event
+
+Empty model chunks are skipped and are not counted toward the chunk limit.
+
+### Run Task 3
+
+Start the FastAPI server:
+
+```bash
+uv run uvicorn sse_endpoint.sse_endpoint:app --reload
+```
+
+In another terminal, connect to the SSE endpoint:
+
+```bash
+curl.exe -N "http://127.0.0.1:8000/stream?topic=LangChain"
+```
+
+### Tests
+
+Run the tests with:
+
+```bash
+uv run pytest tests/test_sse_endpoint.py -v
+```
+
+Expected result:
+
+```text
+test_sse_success PASSED
+test_sse_failure PASSED
+
+2 passed
+```
+
+### Task 3 Deliverables Completed
+
+Task 3 demonstrates a working FastAPI SSE endpoint, asynchronous LangChain streaming, correct SSE headers, progressive HTTP delivery, error events, a final termination event, guardrails, and automated success/failure tests.
+
+
+

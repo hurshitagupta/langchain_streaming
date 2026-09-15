@@ -1,0 +1,166 @@
+data: {"delta": "Lang"}
+
+data: {"delta": "Chain"}
+
+data: {"delta": " is"}
+
+data: {"delta": " a"}
+
+data: {"delta": " toolkit"}
+
+data: {"delta": " that"}
+
+data: {"delta": " helps"}
+
+data: {"delta": " developers"}
+
+data: {"delta": " build"}
+
+data: {"delta": " applications"}
+
+data: {"delta": " that"}
+
+data: {"delta": " use"}
+
+data: {"delta": " large"}
+
+data: {"delta": " language"}
+
+data: {"delta": " models"}
+
+data: {"delta": " ("}
+
+data: {"delta": "LL"}
+
+data: {"delta": "Ms"}
+
+data: {"delta": ")"}
+
+data: {"delta": " like"}
+
+data: {"delta": " Chat"}
+
+data: {"delta": "GPT"}
+
+data: {"delta": "."}
+
+data: {"delta": " It"}
+
+data: {"delta": " provides"}
+
+data: {"delta": " easy"}
+
+data: {"delta": "\u2011"}
+
+data: {"delta": "to"}
+
+data: {"delta": "\u2011"}
+
+data: {"delta": "use"}
+
+data: {"delta": " building"}
+
+data: {"delta": " blocks"}
+
+data: {"delta": "\u2014"}
+
+data: {"delta": "like"}
+
+data: {"delta": " prompts"}
+
+data: {"delta": ","}
+
+data: {"delta": " memory"}
+
+data: {"delta": ","}
+
+data: {"delta": " and"}
+
+data: {"delta": " data"}
+
+data: {"delta": " connectors"}
+
+data: {"delta": "\u2014"}
+
+data: {"delta": "so"}
+
+data: {"delta": " you"}
+
+data: {"delta": " can"}
+
+data: {"delta": " chain"}
+
+data: {"delta": " together"}
+
+data: {"delta": " multiple"}
+
+data: {"delta": " steps"}
+
+data: {"delta": ","}
+
+data: {"delta": " pull"}
+
+data: {"delta": " information"}
+
+data: {"delta": " from"}
+
+data: {"delta": " databases"}
+
+data: {"delta": ","}
+
+data: {"delta": " or"}
+
+data: {"delta": " keep"}
+
+data: {"delta": " conversation"}
+
+data: {"delta": " context"}
+
+data: {"delta": "."}
+
+data: {"delta": " Think"}
+
+data: {"delta": " of"}
+
+data: {"delta": " it"}
+
+data: {"delta": " as"}
+
+data: {"delta": " LEGO"}
+
+data: {"delta": " for"}
+
+data: {"delta": " AI"}
+
+data: {"delta": "\u2011"}
+
+data: {"delta": "powered"}
+
+data: {"delta": " apps"}
+
+data: {"delta": "."}
+
+data: {"delta": " You"}
+
+data: {"delta": " can"}
+
+data: {"delta": " also"}
+
+data: {"delta": " easily"}
+
+data: {"delta": " add"}
+
+data: {"delta": " custom"}
+
+data: {"delta": " logic"}
+
+data: {"delta": " and"}
+
+data: {"delta": " connect"}
+
+data: {"delta": " APIs"}
+
+data: {"delta": "."}
+
+event: done
+data: {"done": true}
